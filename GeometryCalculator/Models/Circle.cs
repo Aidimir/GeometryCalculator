@@ -1,27 +1,27 @@
 namespace GeometryCalculator.Models;
 
-public class Circle : IShape
+public class Circle : Shape
 {
     public double Radius
     {
         get => _radius;
 
-        set => _radius = ValidateRadius(value);
+        set => _radius = Validate(value);
     }
 
     private double _radius;
 
     public Circle(double radius)
     {
-        _radius = ValidateRadius(radius);
+        _radius = Validate(radius);
     }
 
-    public double CalculateArea()
+    public override double CalculateArea()
     {
         return Math.PI * Radius * Radius;
     }
 
-    private double ValidateRadius(double radius)
+    protected override double Validate(double radius)
     {
         if (radius <= 0)
             throw new ArgumentException("Радиус должен быть положительным числом.");

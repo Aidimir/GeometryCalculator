@@ -1,23 +1,23 @@
 namespace GeometryCalculator.Models;
 
-public class Triangle : IShape
+public class Triangle : Shape
 {
     public double A
     {
         get => _a;
-        set => _a = ValidateSide(value);
+        set => _a = Validate(value);
     }
 
     public double B
     {
         get => _b;
-        set => _b = ValidateSide(value);
+        set => _b = Validate(value);
     }
 
     public double C
     {
         get => _c;
-        set => _c = ValidateSide(value);
+        set => _c = Validate(value);
     }
 
     public bool IsStraightAngled
@@ -36,12 +36,12 @@ public class Triangle : IShape
 
     public Triangle(double a, double b, double c)
     {
-        _a = ValidateSide(a);
-        _b = ValidateSide(b);
-        _c = ValidateSide(c);
+        _a = Validate(a);
+        _b = Validate(b);
+        _c = Validate(c);
     }
 
-    public double CalculateArea()
+    public override double CalculateArea()
     {
         double semiPerimeter = (_a + _b + _c) / 2;
         if (semiPerimeter - _a <= 0 || semiPerimeter - _b <= 0 || semiPerimeter - _c <= 0)
@@ -52,7 +52,7 @@ public class Triangle : IShape
         return Math.Sqrt(semiPerimeter * (semiPerimeter - _a) * (semiPerimeter - _b) * (semiPerimeter - _c));
     }
 
-    private double ValidateSide(double side)
+    protected override double Validate(double side)
     {
         if (side <= 0)
             throw new ArgumentException("Сторона треугольника должна быть больше нуля");

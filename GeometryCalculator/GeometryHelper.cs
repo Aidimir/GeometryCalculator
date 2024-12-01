@@ -4,7 +4,7 @@ namespace GeometryCalculator;
 
 public static class GeometryHelper
 {
-    public static double CalculateShapeArea(IShape shape)
+    public static double CalculateShapeArea(Shape shape)
     {
         return shape.CalculateArea();
     }
